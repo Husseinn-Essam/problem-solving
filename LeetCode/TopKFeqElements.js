@@ -5,7 +5,7 @@
  */
 var topKFrequent = function (nums, k) {
   let repeated = {};
-  let frequency = [];
+  let mostFreq = [];
   nums = nums.sort();
   for (let i = 0; i < nums.length; i++) {
     if (nums[i] == nums[i + 1]) {
@@ -18,20 +18,19 @@ var topKFrequent = function (nums, k) {
       repeated[nums[i]] = 1;
     }
   }
-  const entries = Object.entries(repeated);
 
-  //   let minV = 0;
-  //   let minK;
-  //   for (const [key, value] of entries) {
-  //     if (value > maxV) {
-  //       maxV = value;
-  //       maxK = key;
-  //     }
-  //   }
-  return entries;
+  const entries = Object.entries(repeated);
+  entries.sort((a, b) => b[1] - a[1]);
+  for ([key, val] of entries) {
+    if (k === 0) break;
+    mostFreq.push(key);
+    k--;
+  }
+
+  return mostFreq.map((str) => parseInt(str, 10));
 };
 
-console.log(topKFrequent([1, 1, 1, 2, 2, 3], 1));
+console.log(topKFrequent([1, 1, 1, 2, 2, 3, 3, 3, 4], 2));
 //   let repeatedKeys = [];
 //   let oneTimeKeys = [];
 //   for (const [key, value] of entries) {
