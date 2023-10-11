@@ -13,7 +13,7 @@
 const LinkedList = require("../DataStuctures/LinkedList");
 const ListNode = require("../DataStuctures/LinkedNode");
 
-var reverseList = function (head) {
+export const reverseList = function (head) {
   const isBaseCase = !head?.next;
   if (isBaseCase) return head;
   let curr = head;
